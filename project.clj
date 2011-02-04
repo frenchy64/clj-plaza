@@ -1,7 +1,7 @@
 (defproject plaza "0.0.5-SNAPSHOT"
   :description "Plaza framework for semantic distributed applications"
-  :dependencies [[org.clojure/clojure "1.2.0-master-SNAPSHOT"]
-                 [org.clojure/clojure-contrib "1.2.0-SNAPSHOT"]
+  :dependencies [[org.clojure/clojure "1.2.0"]
+                 [org.clojure/clojure-contrib "1.2.0"]
                  [com.hp.hpl.jena/jena "2.6.2"]
                  [com.hp.hpl.jena/arq "2.8.3"]
                  [net.rootdev/java-rdfa "0.3"]
@@ -15,9 +15,10 @@
                  [com.rabbitmq/amqp-client "1.7.2"]
                  [log4j/log4j "1.2.14"]]
   :repositories { "jboss" "http://repository.jboss.org/nexus/content/groups/public/" }
-  :dev-dependencies [[leiningen/lein-swank "1.2.0-SNAPSHOT"]
+  :dev-dependencies [[swank-clojure "1.2.1"]
                      [clojure-http-client "1.1.0-SNAPSHOT"]
-                     [autodoc "0.7.1"]
+                     [autodoc "0.7.1" :exclusions [org.clojure/clojure-contrib 
+                                                   org.clojure/clojure]]
                      [lein-clojars         "0.5.0-SNAPSHOT"]]
   :main     plaza.core
   :autodoc {:name "clj-plaza", :page-title "clj-plaza distributed semantic systems library"
