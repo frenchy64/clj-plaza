@@ -278,8 +278,8 @@
 
 (defn model-query
   "Queries a model and returns a map of bindings"
-  ([model query]
-     (query model query)))
+  ([model user-query]
+     (query model user-query)))
 
 (declare pattern-bind)
 (defn model-query-triples
