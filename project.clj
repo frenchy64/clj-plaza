@@ -1,4 +1,4 @@
-(defproject plaza "0.0.5-SNAPSHOT"
+(defproject plaza "0.0.5.1-SNAPSHOT"
   :description "Plaza framework for semantic distributed applications"
   :dependencies [[org.clojure/clojure "1.2.0"]
                  [org.clojure/clojure-contrib "1.2.0"]
