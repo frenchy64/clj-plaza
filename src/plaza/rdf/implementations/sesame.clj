@@ -282,6 +282,7 @@
                 (let [connection (.getConnection mod)]
                   (try
                    (do
+                     (.setAutoCommit connection false)
                      (let [stmts (.asList (.getStatements connection nil nil nil true (into-array org.openrdf.model.Resource [])))
                            res (map (fn [st]
                                       (let [s (let [subj (.getSubject st)]
@@ -310,14 +311,17 @@
                    (finally (.close connection)))))
   (to-string [model] (walk-triples model (fn [s p o] [(to-string s) (to-string p) (to-string o)])))
   (load-stream [model stream format]
-
                (let [format (translate-plaza-format (parse-format format))
                      connection (.getConnection mod)]
                  (try
-                  (if (string? stream)
-                    (.add connection (plaza.utils/grab-document-url stream) stream format (into-array org.openrdf.model.Resource []))
-                    (.add connection stream *rdf-ns* format (into-array org.openrdf.model.Resource [])))
-                  (finally (.close connection)))
+                   (do 
+                     (.setAutoCommit connection false)
+                     (if (string? stream)
+                       (.add connection (plaza.utils/grab-document-url stream) stream format (into-array org.openrdf.model.Resource []))
+                       (.add connection stream *rdf-ns* format (into-array org.openrdf.model.Resource [])))
+                     (.commit connection))
+                   (catch RepositoryException e (.rollback connection))
+                   (finally (.close connection)))
                  model))
   (output-string  [model writer format]
                   (do
