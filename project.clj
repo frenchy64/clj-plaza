@@ -16,10 +16,11 @@
                  [log4j/log4j "1.2.14"]]
   :repositories { "jboss" "http://repository.jboss.org/nexus/content/groups/public/" }
   :dev-dependencies [[swank-clojure "1.2.1"]
-                     [clojure-http-client "1.1.0-SNAPSHOT"]
+                     [org.clojars.autre/lein-vimclojure "1.0.0"]
+                     [clojure-http-client "1.1.0"]
                      [autodoc "0.7.1" :exclusions [org.clojure/clojure-contrib 
                                                    org.clojure/clojure]]
-                     [lein-clojars         "0.5.0-SNAPSHOT"]]
+                     [lein-clojars         "0.6.0"]]
   :main     plaza.core
   :autodoc {:name "clj-plaza", :page-title "clj-plaza distributed semantic systems library"
             :author "Antonio Garrote <antoniogarrote@gmail.com> <agarrote@usal.es>"
